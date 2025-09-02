@@ -20,7 +20,14 @@
     "build:prod": "cp .env.production .env && expo export",
     "reset-project": "node ./scripts/reset-project.js",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "generate": "plop generate",
+    "generate:atom": "plop atom",
+    "generate:molecule": "plop molecule",
+    "generate:organism": "plop organism",
+    "generate:hook": "plop hook",
+    "generate:screen": "plop screen",
+    "generate:tab-screen": "plop tab-screen"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -60,6 +67,7 @@
     "@types/react": "~19.0.10",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
+    "plop": "^4.0.1",
     "typescript": "~5.8.3"
   },
   "sideEffects": false,

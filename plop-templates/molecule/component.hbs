@@ -1,0 +1,22 @@
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
+import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+
+interface {{pascalCase name}}Props {
+  // Add your props here
+}
+
+export function {{pascalCase name}}({}: {{pascalCase name}}Props) {
+  return (
+    <ThemedView style={styles.container}>
+      <ThemedText type="subtitle">{{pascalCase name}} Molecule</ThemedText>
+    </ThemedView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    // Add your styles here
+  },
+});
