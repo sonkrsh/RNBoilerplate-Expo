@@ -1,12 +1,11 @@
 import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
-// TEST 4: Direct imports - import AND use UnusedTestComponent
 import { HelloWave } from "@/components/atoms/HelloWave";
 import { ThemedText } from "@/components/atoms/ThemedText";
 import { ThemedView } from "@/components/atoms/ThemedView";
-import { UnusedTestComponent } from "@/components/atoms/UnusedTestComponent";
 import { ParallaxScrollView } from "@/components/organisms/ParallaxScrollView";
+import { ThemeToggle } from "@/components/molecules/ThemeToggle";
 
 export default function HomeScreen() {
   return (
@@ -20,9 +19,16 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Dashboard</ThemedText>
         <HelloWave />
-        <UnusedTestComponent />
+      </ThemedView>
+      
+      <ThemedView style={styles.themeContainer}>
+        <ThemedText type="subtitle">Theme Settings</ThemedText>
+        <View style={styles.themeToggleRow}>
+          <ThemedText>Toggle Light/Dark Mode:</ThemedText>
+          <ThemeToggle />
+        </View>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
@@ -68,6 +74,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+  },
+  themeContainer: {
+    gap: 12,
+    marginBottom: 16,
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+  },
+  themeToggleRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   stepContainer: {
     gap: 8,

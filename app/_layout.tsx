@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { store } from '@/store/store';
 import { ErrorBoundary } from '@/components/organisms/ErrorBoundary';
+import { ThemeProvider as CustomThemeProvider } from '@/contexts/ThemeContext';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -22,15 +23,17 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <Provider store={store}>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="auto" />
-        </ThemeProvider>
-      </Provider>
+      <CustomThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </ThemeProvider>
+        </Provider>
+      </CustomThemeProvider>
     </ErrorBoundary>
   );
 }
