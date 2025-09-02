@@ -4,12 +4,15 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { BlurView } from 'expo-blur';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
   const backgroundColor = useThemeColor({}, 'background');
   const borderColor = useThemeColor({}, 'border');
+  const colorScheme = useColorScheme();
   const { t } = useTranslation();
 
   const getTabIcon = (routeName: string, focused: boolean) => {
@@ -42,14 +45,26 @@ export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTab
   };
 
   return (
-    <View style={[
-      styles.tabBar, 
-      { 
-        marginBottom: 16 + insets.bottom,
-        backgroundColor,
-        borderColor,
-      }
-    ]}>
+    <>
+      {/* Blur overlay for space below tab bar */}
+      <BlurView
+        intensity={100}
+        tint={colorScheme}
+        style={[
+          styles.blurOverlay,
+          { height: 28 + insets.bottom }
+        ]}
+      />
+      
+      {/* Tab bar */}
+      <View style={[
+        styles.tabBar, 
+        { 
+          marginBottom: 16 + insets.bottom,
+          backgroundColor,
+          borderColor,
+        }
+      ]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;
@@ -91,11 +106,19 @@ export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTab
           </TouchableOpacity>
         );
       })}
-    </View>
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  blurOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+  },
   tabBar: {
     flexDirection: 'row',
     marginHorizontal: 16,
@@ -116,6 +139,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     justifyContent: 'space-between',
+    zIndex: 2,
   },
   tabItem: {
     alignItems: 'center',
