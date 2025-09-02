@@ -3,12 +3,14 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
   const backgroundColor = useThemeColor({}, 'background');
   const borderColor = useThemeColor({}, 'border');
+  const { t } = useTranslation();
 
   const getTabIcon = (routeName: string, focused: boolean) => {
     const color = focused ? '#FFFFFF' : '#6B7280';
@@ -29,11 +31,11 @@ export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTab
   const getTabLabel = (routeName: string) => {
     switch (routeName) {
       case 'index':
-        return 'Dashboard';
+        return t('dashboard');
       case 'explore':
-        return 'Explore';
+        return t('explore');
       case 'components':
-        return 'Components';
+        return t('components');
       default:
         return routeName;
     }

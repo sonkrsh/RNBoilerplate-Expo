@@ -1,13 +1,17 @@
 import { Image } from "expo-image";
 import { Platform, StyleSheet, View } from "react-native";
+import { useTranslation } from 'react-i18next';
 
 import { HelloWave } from "@/components/atoms/HelloWave";
 import { ThemedText } from "@/components/atoms/ThemedText";
 import { ThemedView } from "@/components/atoms/ThemedView";
 import { ParallaxScrollView } from "@/components/organisms/ParallaxScrollView";
 import { ThemeToggle } from "@/components/molecules/ThemeToggle";
+import { LanguageToggle } from "@/components/molecules/LanguageToggle";
 
 export default function HomeScreen() {
+  const { t } = useTranslation();
+  
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -19,19 +23,27 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Dashboard</ThemedText>
+        <ThemedText type="title">{t('dashboard')}</ThemedText>
         <HelloWave />
       </ThemedView>
       
       <ThemedView style={styles.themeContainer}>
-        <ThemedText type="subtitle">Theme Settings</ThemedText>
+        <ThemedText type="subtitle">{t('themeSettings')}</ThemedText>
         <View style={styles.themeToggleRow}>
-          <ThemedText>Toggle Light/Dark Mode:</ThemedText>
+          <ThemedText>{t('toggleTheme')}</ThemedText>
           <ThemeToggle />
         </View>
       </ThemedView>
+      
+      <ThemedView style={styles.themeContainer}>
+        <ThemedText type="subtitle">{t('languageSettings')}</ThemedText>
+        <View style={styles.themeToggleRow}>
+          <ThemedText>{t('changeLanguage')}</ThemedText>
+          <LanguageToggle />
+        </View>
+      </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
+        <ThemedText type="subtitle">{t('step1')}</ThemedText>
         <ThemedText>
           Edit{" "}
           <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
@@ -47,13 +59,13 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
+        <ThemedText type="subtitle">{t('step2')}</ThemedText>
         <ThemedText>
           {`Tap the Explore tab to learn more about what's included in this starter app.`}
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
+        <ThemedText type="subtitle">{t('step3')}</ThemedText>
         <ThemedText>
           {`When you're ready, run `}
           <ThemedText type="defaultSemiBold">

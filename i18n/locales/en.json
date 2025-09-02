@@ -1,0 +1,13 @@
+{
+  "dashboard": "Dashboard",
+  "explore": "Explore",
+  "components": "Components",
+  "welcome": "Welcome!",
+  "themeSettings": "Theme Settings",
+  "toggleTheme": "Toggle Light/Dark Mode:",
+  "languageSettings": "Language Settings",
+  "changeLanguage": "Change Language:",
+  "step1": "Step 1: Try it",
+  "step2": "Step 2: Explore",
+  "step3": "Step 3: Get a fresh start"
+}

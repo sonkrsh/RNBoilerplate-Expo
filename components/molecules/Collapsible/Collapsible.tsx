@@ -13,7 +13,7 @@ export type CollapsibleProps = PropsWithChildren & { title: string };
 export function Collapsible({ children, title }: CollapsibleProps) {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useColorScheme() ?? 'light';
-  const iconColor = useMemo(() => Colors[theme].icon, [theme]);
+  const iconColor = useMemo(() => Colors[theme as keyof typeof Colors].icon, [theme]);
 
   return (
     <ThemedView>
