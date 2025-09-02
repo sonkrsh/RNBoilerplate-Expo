@@ -128,16 +128,14 @@ module.exports = function (plop) {
               type: 'modify',
               path: 'components/organisms/CustomTabBar/CustomTabBar.tsx',
               pattern: /(      case 'components':
-        return <MaterialIcons name="article" size={size} color={color} \/>;
-)/,
+        return <MaterialIcons name="article" size={size} color={color} \/>;)/,
               template: '$1      case \'{{kebabCase name}}\':\n        return <MaterialIcons name="{{icon}}" size={size} color={color} />;\n'
             },
             {
               type: 'modify',
               path: 'components/organisms/CustomTabBar/CustomTabBar.tsx',
               pattern: /(      case 'components':
-        return t\('components'\);
-)/,
+        return t\('components'\);)/,
               template: '$1      case \'{{kebabCase name}}\':\n        return t(\'{{camelCase name}}\');\n'
             }
           );
