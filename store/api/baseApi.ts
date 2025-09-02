@@ -60,12 +60,23 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+// Query parameters interface for type safety
+interface QueryParams {
+  url: string;
+  method?: string;
+  data?: any;
+  headers?: Record<string, string>;
+  params?: any;
+}
+
 // Custom base query using axios
 const axiosBaseQuery = ({ baseUrl }: { baseUrl: string }) =>
-  async ({ url, method = 'GET', data, headers, params }: any) => {
+  async ({ url, method = 'GET', data, headers, params }: QueryParams) => {
     try {
+      // Proper URL concatenation to avoid double slashes
+      const fullUrl = new URL(url, baseUrl).toString();
       const result = await axiosInstance({
-        url: baseUrl + url,
+        url: fullUrl,
         method,
         data,
         headers,

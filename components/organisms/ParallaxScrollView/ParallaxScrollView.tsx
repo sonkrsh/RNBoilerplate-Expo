@@ -20,7 +20,7 @@ export type ParallaxScrollViewProps = PropsWithChildren<{
 
 type Props = ParallaxScrollViewProps;
 
-export default function ParallaxScrollView({
+export function ParallaxScrollView({
   children,
   headerImage,
   headerBackgroundColor,
@@ -67,3 +67,4 @@ export default function ParallaxScrollView({
   );
 }
 
+export default ParallaxScrollView;

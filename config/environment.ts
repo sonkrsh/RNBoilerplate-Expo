@@ -20,7 +20,7 @@ const getEnvironmentConfig = (): EnvironmentConfig => {
       "https://dev-api.artivo.com/api/v1",
     APP_NAME: process.env.EXPO_PUBLIC_APP_NAME || "Artivo Sales (Dev)",
     ENABLE_FLIPPER: process.env.EXPO_PUBLIC_ENABLE_FLIPPER === "true",
-    LOG_LEVEL: (process.env.EXPO_PUBLIC_LOG_LEVEL as any) || "debug",
+    LOG_LEVEL: (process.env.EXPO_PUBLIC_LOG_LEVEL as "debug" | "info" | "warn" | "error") || "debug",
     ANALYTICS_ENABLED: process.env.EXPO_PUBLIC_ANALYTICS_ENABLED === "true",
   };
 };
@@ -32,24 +32,36 @@ export const isDevelopment = ENV_CONFIG.ENV === "development";
 export const isQA = ENV_CONFIG.ENV === "qa";
 export const isProduction = ENV_CONFIG.ENV === "production";
 
+// Numeric log levels for better performance
+const LOG_LEVELS = { debug: 0, info: 1, warn: 2, error: 3 };
+const currentLogLevel = LOG_LEVELS[ENV_CONFIG.LOG_LEVEL];
+
+// Sanitize log input to prevent injection
+const sanitizeLogInput = (input: any): string => {
+  if (typeof input === 'string') {
+    return input.replace(/[\r\n]/g, ' ').replace(/[\x00-\x1f\x7f-\x9f]/g, '');
+  }
+  return String(input).replace(/[\r\n]/g, ' ').replace(/[\x00-\x1f\x7f-\x9f]/g, '');
+};
+
 // Logging utility based on environment
 export const logger = {
   debug: (message: string, ...args: any[]) => {
-    if (["debug"].includes(ENV_CONFIG.LOG_LEVEL)) {
-      console.log(`[DEBUG] ${message}`, ...args);
+    if (currentLogLevel <= LOG_LEVELS.debug) {
+      console.log(`[DEBUG] ${sanitizeLogInput(message)}`, ...args.map(sanitizeLogInput));
     }
   },
   info: (message: string, ...args: any[]) => {
-    if (["debug", "info"].includes(ENV_CONFIG.LOG_LEVEL)) {
-      console.info(`[INFO] ${message}`, ...args);
+    if (currentLogLevel <= LOG_LEVELS.info) {
+      console.info(`[INFO] ${sanitizeLogInput(message)}`, ...args.map(sanitizeLogInput));
     }
   },
   warn: (message: string, ...args: any[]) => {
-    if (["debug", "info", "warn"].includes(ENV_CONFIG.LOG_LEVEL)) {
-      console.warn(`[WARN] ${message}`, ...args);
+    if (currentLogLevel <= LOG_LEVELS.warn) {
+      console.warn(`[WARN] ${sanitizeLogInput(message)}`, ...args.map(sanitizeLogInput));
     }
   },
   error: (message: string, ...args: any[]) => {
-    console.error(`[ERROR] ${message}`, ...args);
+    console.error(`[ERROR] ${sanitizeLogInput(message)}`, ...args.map(sanitizeLogInput));
   },
 };

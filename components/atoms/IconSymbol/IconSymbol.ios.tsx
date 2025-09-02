@@ -14,12 +14,15 @@ export function IconSymbol({
   style?: StyleProp<ViewStyle>;
   weight?: SymbolWeight;
 }) {
+  // Validate and sanitize symbol name to prevent XSS
+  const sanitizedName = (typeof name === 'string' ? name.replace(/[<>"'&]/g, '') : name) as SymbolViewProps['name'];
+  
   return (
     <SymbolView
       weight={weight}
       tintColor={color}
       resizeMode="scaleAspectFit"
-      name={name}
+      name={sanitizedName}
       style={[
         {
           width: size,

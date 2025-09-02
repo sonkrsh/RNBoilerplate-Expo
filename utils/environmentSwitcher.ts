@@ -1,11 +1,18 @@
-import { ENV_CONFIG, Environment } from '@/config/environment';
+import { ENV_CONFIG, Environment, logger } from '@/config/environment';
 
 export class EnvironmentSwitcher {
   static getCurrentEnvironment(): Environment {
     return ENV_CONFIG.ENV;
   }
 
-  static getEnvironmentInfo() {
+  static getEnvironmentInfo(): {
+    current: Environment;
+    apiBaseUrl: string;
+    appName: string;
+    logLevel: string;
+    flipperEnabled: boolean;
+    analyticsEnabled: boolean;
+  } {
     return {
       current: ENV_CONFIG.ENV,
       apiBaseUrl: ENV_CONFIG.API_BASE_URL,
@@ -29,15 +36,17 @@ export class EnvironmentSwitcher {
   }
 
   // For debugging - display current environment info
-  static logEnvironmentInfo() {
-    console.log('🌍 Environment Info:', {
-      Environment: ENV_CONFIG.ENV.toUpperCase(),
-      'API Base URL': ENV_CONFIG.API_BASE_URL,
-      'App Name': ENV_CONFIG.APP_NAME,
-      'Log Level': ENV_CONFIG.LOG_LEVEL,
-      'Flipper': ENV_CONFIG.ENABLE_FLIPPER ? 'Enabled' : 'Disabled',
-      'Analytics': ENV_CONFIG.ANALYTICS_ENABLED ? 'Enabled' : 'Disabled',
-    });
+  static logEnvironmentInfo(): void {
+    if (ENV_CONFIG.ENV === 'development') {
+      logger.info('🌍 Environment Info', {
+        Environment: ENV_CONFIG.ENV.toUpperCase(),
+        'API Base URL': ENV_CONFIG.API_BASE_URL,
+        'App Name': ENV_CONFIG.APP_NAME,
+        'Log Level': ENV_CONFIG.LOG_LEVEL,
+        'Flipper': ENV_CONFIG.ENABLE_FLIPPER ? 'Enabled' : 'Disabled',
+        'Analytics': ENV_CONFIG.ANALYTICS_ENABLED ? 'Enabled' : 'Disabled',
+      });
+    }
   }
 }
 
