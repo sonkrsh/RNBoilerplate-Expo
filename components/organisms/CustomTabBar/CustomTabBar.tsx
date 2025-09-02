@@ -26,6 +26,8 @@ export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTab
         return <MaterialIcons name="track-changes" size={size} color={color} />;
       case 'components':
         return <MaterialIcons name="article" size={size} color={color} />;
+      case 'auth':
+        return <MaterialIcons name="login" size={size} color={color} />;
       default:
         return <MaterialIcons name="dashboard" size={size} color={color} />;
     }
@@ -39,6 +41,8 @@ export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTab
         return t('explore');
       case 'components':
         return t('components');
+      case 'auth':
+        return t('auth');
       default:
         return routeName;
     }
