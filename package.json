@@ -4,9 +4,21 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
+    "start:dev": "cp .env.development .env && expo start",
+    "start:qa": "cp .env.qa .env && expo start",
+    "start:prod": "cp .env.production .env && expo start",
     "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android:dev": "cp .env.development .env && expo start --android",
+    "android:qa": "cp .env.qa .env && expo start --android",
+    "android:prod": "cp .env.production .env && expo start --android",
+    "ios": "expo start --ios", 
+    "ios:dev": "cp .env.development .env && expo start --ios",
+    "ios:qa": "cp .env.qa .env && expo start --ios",
+    "ios:prod": "cp .env.production .env && expo start --ios",
+    "build:dev": "cp .env.development .env && expo export",
+    "build:qa": "cp .env.qa .env && expo export",
+    "build:prod": "cp .env.production .env && expo export",
+    "reset-project": "node ./scripts/reset-project.js",
     "web": "expo start --web",
     "lint": "expo lint"
   },
@@ -15,6 +27,8 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.11.0",
     "expo": "~53.0.22",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.7",
@@ -36,14 +50,15 @@
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-web": "~0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
-    "typescript": "~5.8.3",
     "eslint": "^9.25.0",
-    "eslint-config-expo": "~9.2.0"
+    "eslint-config-expo": "~9.2.0",
+    "typescript": "~5.8.3"
   },
   "sideEffects": false,
   "private": true

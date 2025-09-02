@@ -1,10 +1,11 @@
 import { Image } from "expo-image";
 import { Platform, StyleSheet } from "react-native";
 
-// Clean imports with perfect tree shaking
+// TEST 4: Direct imports - import AND use UnusedTestComponent
 import { HelloWave } from "@/components/atoms/HelloWave";
 import { ThemedText } from "@/components/atoms/ThemedText";
 import { ThemedView } from "@/components/atoms/ThemedView";
+import { UnusedTestComponent } from "@/components/atoms/UnusedTestComponent";
 import { ParallaxScrollView } from "@/components/organisms/ParallaxScrollView";
 
 export default function HomeScreen() {
@@ -21,6 +22,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
+        <UnusedTestComponent />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
