@@ -2,9 +2,10 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
+// Direct imports - testing tree shaking
+import { HapticTab } from '@/components/molecules/HapticTab/HapticTab';
+import { IconSymbol } from '@/components/atoms/IconSymbol/IconSymbol';
+import { TabBarBackground } from '@/components/organisms/TabBarBackground/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 

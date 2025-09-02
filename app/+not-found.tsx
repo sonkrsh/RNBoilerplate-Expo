@@ -1,8 +1,9 @@
 import { Link, Stack } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// Direct imports - testing tree shaking
+import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
 
 export default function NotFoundScreen() {
   return (

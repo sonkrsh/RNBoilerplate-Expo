@@ -1,0 +1,1 @@
+export { default as ParallaxScrollView, type ParallaxScrollViewProps } from './ParallaxScrollView';
