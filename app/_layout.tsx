@@ -1,16 +1,16 @@
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Provider } from 'react-redux';
-import 'react-native-reanimated';
-import '@/i18n';
+import "@/i18n";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import "react-native-reanimated";
+import { Provider } from "react-redux";
 
-import { store } from '@/store/store';
-import { ErrorBoundary } from '@/components/organisms/ErrorBoundary';
+import { ErrorBoundary } from "@/components/organisms/ErrorBoundary";
+import { store } from "@/store/store";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Graphik: require("../assets/fonts/Graphik-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -22,12 +22,17 @@ export default function RootLayout() {
     <ErrorBoundary>
       <Provider store={store}>
         <Stack>
-          <Stack.Screen name="index" options={{
-            headerTitle: "ARTNET", headerTitleStyle: {
-              fontWeight: '500',
-              fontSize: 32,
-            }, headerShown: true
-          }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerTitle: "ARTNET",
+              headerTitleStyle: {
+                fontWeight: "500",
+                fontSize: 32,
+              },
+              headerShown: true,
+            }}
+          />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
