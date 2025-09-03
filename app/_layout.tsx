@@ -6,6 +6,7 @@ import "react-native-reanimated";
 import { Provider } from "react-redux";
 
 import { ErrorBoundary } from "@/components/organisms/ErrorBoundary";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { store } from "@/store/store";
 
 export default function RootLayout() {
@@ -20,24 +21,33 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <Provider store={store}>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{
-              headerTitle: "ARTNET",
-              headerTitleStyle: {
-                fontWeight: "500",
-                fontSize: 32,
-              },
-              headerShown: true,
-            }}
-          />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="light" />
-      </Provider>
+      <AuthProvider>
+        <Provider store={store}>
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{
+                headerShown: false, // Hide header for auth router
+              }}
+            />
+            <Stack.Screen
+              name="login/index"
+              options={{
+                headerTitle: "ARTNET",
+                headerTitleStyle: {
+                  fontWeight: "500",
+                  fontSize: 32,
+                },
+                headerShown: true,
+                gestureEnabled: false, // Prevent swipe back from login
+              }}
+            />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="light" />
+        </Provider>
+      </AuthProvider>
     </ErrorBoundary>
   );
 }
