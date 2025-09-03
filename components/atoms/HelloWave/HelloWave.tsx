@@ -7,7 +7,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+import { StyledText } from '@/components/atoms/StyledText';
 import { styles } from './styles';
 
 export function HelloWave() {
@@ -27,7 +27,7 @@ export function HelloWave() {
 
   return (
     <Animated.View style={animatedStyle}>
-      <ThemedText style={styles.text}>👋</ThemedText>
+      <StyledText style={styles.text}>👋</StyledText>
     </Animated.View>
   );
 }

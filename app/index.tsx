@@ -1,15 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { ThemedText } from '@/components/atoms/ThemedText';
-import { ThemedView } from '@/components/atoms/ThemedView';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { StyledText } from '@/components/atoms/StyledText';
+import { StyledView } from '@/components/atoms/StyledView';
 import MicrosoftLogo from '@/assets/images/microsoft_logo.svg';
 import { router } from 'expo-router';
 const { height } = Dimensions.get('window');
 
 export default function LoginScreen() {
-  const textColor = useThemeColor({}, 'text');
-  const backgroundColor = useThemeColor({}, 'background');
 
 
   const handleMicrosoftLogin = () => {
@@ -19,7 +16,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <ThemedView style={styles.container}>
+    <StyledView style={styles.container}>
       <View style={styles.imageSection}>
         <Image
           source={require('@/assets/images/login_image.png')}
@@ -30,21 +27,21 @@ export default function LoginScreen() {
 
       <View style={styles.formSection}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.formContainer}>
-          <ThemedText style={styles.loginTitle}>Log in to Artnet App</ThemedText>
-          <ThemedText style={styles.loginSubtitle}>
+          <StyledText style={styles.loginTitle}>Log in to Artnet App</StyledText>
+          <StyledText style={styles.loginSubtitle}>
             Lorem ipsum dolor sit amet
-          </ThemedText>
+          </StyledText>
 
           <TouchableOpacity style={styles.microsoftButton} onPress={handleMicrosoftLogin}>
             <View style={styles.microsoftIcon}>
               <MicrosoftLogo width={20} height={20} />
             </View>
-            <ThemedText style={styles.microsoftButtonText}>Log in with Microsoft</ThemedText>
+            <StyledText style={styles.microsoftButtonText}>Log in with Microsoft</StyledText>
           </TouchableOpacity>
 
         </ScrollView>
       </View>
-    </ThemedView>
+    </StyledView>
   );
 }
 

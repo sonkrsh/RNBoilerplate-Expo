@@ -3,10 +3,9 @@ import { Platform, StyleSheet, View } from "react-native";
 import { useTranslation } from 'react-i18next';
 
 import { HelloWave } from "@/components/atoms/HelloWave";
-import { ThemedText } from "@/components/atoms/ThemedText";
-import { ThemedView } from "@/components/atoms/ThemedView";
+import { StyledText } from "@/components/atoms/StyledText";
+import { StyledView } from "@/components/atoms/StyledView";
 import { ParallaxScrollView } from "@/components/organisms/ParallaxScrollView";
-import { ThemeToggle } from "@/components/molecules/ThemeToggle";
 import { LanguageToggle } from "@/components/molecules/LanguageToggle";
 
 export default function HomeScreen() {
@@ -14,7 +13,7 @@ export default function HomeScreen() {
   
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      headerBackgroundColor="#A1CEDC"
       headerImage={
         <Image
           source={require("@/assets/images/partial-react-logo.png")}
@@ -22,61 +21,54 @@ export default function HomeScreen() {
         />
       }
     >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">{t('dashboard')}</ThemedText>
+      <StyledView style={styles.titleContainer}>
+        <StyledText type="title">{t('dashboard')}</StyledText>
         <HelloWave />
-      </ThemedView>
+      </StyledView>
       
-      <ThemedView style={styles.themeContainer}>
-        <ThemedText type="subtitle">{t('themeSettings')}</ThemedText>
+      <StyledView style={styles.themeContainer}>
+        <StyledText type="subtitle">{t('languageSettings')}</StyledText>
         <View style={styles.themeToggleRow}>
-          <ThemedText>{t('toggleTheme')}</ThemedText>
-          <ThemeToggle />
-        </View>
-      </ThemedView>
-      
-      <ThemedView style={styles.themeContainer}>
-        <ThemedText type="subtitle">{t('languageSettings')}</ThemedText>
-        <View style={styles.themeToggleRow}>
-          <ThemedText>{t('changeLanguage')}</ThemedText>
+          <StyledText>{t('changeLanguage')}</StyledText>
           <LanguageToggle />
         </View>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">{t('step1')}</ThemedText>
-        <ThemedText>
+      </StyledView>
+      
+      <StyledView style={styles.stepContainer}>
+        <StyledText type="subtitle">{t('step1')}</StyledText>
+        <StyledText>
           Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
+          <StyledText type="defaultSemiBold">app/(tabs)/index.tsx</StyledText>{" "}
           to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
+          <StyledText type="defaultSemiBold">
             {Platform.select({
               ios: "cmd + d",
               android: "cmd + m",
               web: "F12",
             })}
-          </ThemedText>{" "}
+          </StyledText>{" "}
           to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">{t('step2')}</ThemedText>
-        <ThemedText>
+        </StyledText>
+      </StyledView>
+      <StyledView style={styles.stepContainer}>
+        <StyledText type="subtitle">{t('step2')}</StyledText>
+        <StyledText>
           {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">{t('step3')}</ThemedText>
-        <ThemedText>
+        </StyledText>
+      </StyledView>
+      <StyledView style={styles.stepContainer}>
+        <StyledText type="subtitle">{t('step3')}</StyledText>
+        <StyledText>
           {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
+          <StyledText type="defaultSemiBold">
             npm run reset-project
-          </ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
+          </StyledText>{" "}
+          to get a fresh <StyledText type="defaultSemiBold">app</StyledText>{" "}
           directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+          <StyledText type="defaultSemiBold">app</StyledText> to{" "}
+          <StyledText type="defaultSemiBold">app-example</StyledText>.
+        </StyledText>
+      </StyledView>
     </ParallaxScrollView>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
-import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { StyledText } from '@/components/atoms/StyledText';
+import { StyledView } from '@/components/atoms/StyledView';
+import { Colors } from '@/constants/Colors';
 
 export interface FormField {
   name: string;
@@ -22,15 +22,15 @@ interface FormProps {
 
 export function Form({ fields, onSubmit, submitText = 'Submit', loading = false }: FormProps) {
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const borderColor = useThemeColor({}, 'border');
-  const backgroundColor = useThemeColor({}, 'background');
-  const textColor = useThemeColor({}, 'text');
+  const borderColor = Colors.border;
+  const backgroundColor = Colors.background;
+  const textColor = Colors.text;
 
   return (
-    <ThemedView style={styles.container}>
+    <StyledView style={styles.container}>
       {fields.map((field) => (
         <View key={field.name} style={styles.fieldContainer}>
-          <ThemedText style={styles.label}>{field.label}</ThemedText>
+          <StyledText style={styles.label}>{field.label}</StyledText>
           
           <Controller
             control={control}
@@ -54,9 +54,9 @@ export function Form({ fields, onSubmit, submitText = 'Submit', loading = false 
           />
           
           {errors[field.name] && (
-            <ThemedText style={styles.errorText}>
+            <StyledText style={styles.errorText}>
               {errors[field.name]?.message}
-            </ThemedText>
+            </StyledText>
           )}
         </View>
       ))}
@@ -66,11 +66,11 @@ export function Form({ fields, onSubmit, submitText = 'Submit', loading = false 
         onPress={handleSubmit(onSubmit)}
         disabled={loading}
       >
-        <ThemedText style={styles.submitText}>
+        <StyledText style={styles.submitText}>
           {loading ? 'Loading...' : submitText}
-        </ThemedText>
+        </StyledText>
       </TouchableOpacity>
-    </ThemedView>
+    </StyledView>
   );
 }
 

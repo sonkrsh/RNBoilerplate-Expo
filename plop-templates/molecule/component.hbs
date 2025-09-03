@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+import { StyledView } from '@/components/atoms/StyledView';
+import { StyledText } from '@/components/atoms/StyledText';
 
 interface {{pascalCase name}}Props {
   // Add your props here
@@ -9,9 +9,9 @@ interface {{pascalCase name}}Props {
 
 export function {{pascalCase name}}({}: {{pascalCase name}}Props) {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="subtitle">{{pascalCase name}} Molecule</ThemedText>
-    </ThemedView>
+    <StyledView style={styles.container}>
+      <StyledText type="subtitle">{{pascalCase name}} Molecule</StyledText>
+    </StyledView>
   );
 }
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { Colors } from '@/constants/Colors';
 
 export function LanguageToggle() {
   const { i18n } = useTranslation();
-  const backgroundColor = useThemeColor({}, 'card');
-  const textColor = useThemeColor({}, 'text');
-  const borderColor = useThemeColor({}, 'border');
+  const backgroundColor = Colors.card;
+  const textColor = Colors.text;
+  const borderColor = Colors.border;
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'hi' : 'en';

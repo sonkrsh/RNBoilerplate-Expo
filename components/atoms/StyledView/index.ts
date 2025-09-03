@@ -1,0 +1,1 @@
+export { StyledView, type StyledViewProps } from './StyledView';

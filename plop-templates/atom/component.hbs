@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+import { StyledView } from '@/components/atoms/StyledView';
+import { StyledText } from '@/components/atoms/StyledText';
 import { styles } from './styles';
 
 interface {{pascalCase name}}Props {
@@ -10,8 +10,8 @@ interface {{pascalCase name}}Props {
 
 export function {{pascalCase name}}({}: {{pascalCase name}}Props) {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText>{{pascalCase name}} Component</ThemedText>
-    </ThemedView>
+    <StyledView style={styles.container}>
+      <StyledText>{{pascalCase name}} Component</StyledText>
+    </StyledView>
   );
 }

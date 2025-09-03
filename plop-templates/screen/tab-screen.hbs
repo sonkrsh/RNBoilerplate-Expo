@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+import { StyledView } from '@/components/atoms/StyledView';
+import { StyledText } from '@/components/atoms/StyledText';
 
 export default function {{pascalCase name}}Screen() {
   const { t } = useTranslation();
@@ -11,15 +11,15 @@ export default function {{pascalCase name}}Screen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.container}>
-        <ThemedView style={styles.content}>
-          <ThemedText type="title">{{pascalCase name}}</ThemedText>
-          <ThemedText>Welcome to the {{pascalCase name}} tab!</ThemedText>
+        <StyledView style={styles.content}>
+          <StyledText type="title">{{pascalCase name}}</StyledText>
+          <StyledText>Welcome to the {{pascalCase name}} tab!</StyledText>
           
-          <ThemedView style={styles.section}>
-            <ThemedText type="subtitle">Section 1</ThemedText>
-            <ThemedText>Add your content here...</ThemedText>
-          </ThemedView>
-        </ThemedView>
+          <StyledView style={styles.section}>
+            <StyledText type="subtitle">Section 1</StyledText>
+            <StyledText>Add your content here...</StyledText>
+          </StyledView>
+        </StyledView>
       </ScrollView>
     </SafeAreaView>
   );

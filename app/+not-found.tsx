@@ -2,19 +2,19 @@ import { Link, Stack } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
 // Direct imports - testing tree shaking
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
-import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
+import { StyledText } from '@/components/atoms/StyledText';
+import { StyledView } from '@/components/atoms/StyledView';
 
 export default function NotFoundScreen() {
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen does not exist.</ThemedText>
+      <StyledView style={styles.container}>
+        <StyledText type="title">This screen does not exist.</StyledText>
         <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
+          <StyledText type="link">Go to home screen!</StyledText>
         </Link>
-      </ThemedView>
+      </StyledView>
     </>
   );
 }
