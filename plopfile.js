@@ -75,6 +75,11 @@ module.exports = function (plop) {
               type: 'add',
               path: 'components/molecules/{{pascalCase name}}/index.ts',
               templateFile: 'plop-templates/molecule/index.hbs'
+            },
+            {
+              type: 'add',
+              path: 'components/molecules/{{pascalCase name}}/styles.ts',
+              templateFile: 'plop-templates/molecule/styles.hbs'
             }
           );
           break;
@@ -90,6 +95,11 @@ module.exports = function (plop) {
               type: 'add',
               path: 'components/organisms/{{pascalCase name}}/index.ts',
               templateFile: 'plop-templates/organism/index.hbs'
+            },
+            {
+              type: 'add',
+              path: 'components/organisms/{{pascalCase name}}/styles.ts',
+              templateFile: 'plop-templates/organism/styles.hbs'
             }
           );
           break;
@@ -103,11 +113,23 @@ module.exports = function (plop) {
           break;
           
         case 'screen':
-          actions.push({
-            type: 'add',
-            path: 'app/{{kebabCase name}}.tsx',
-            templateFile: 'plop-templates/screen/screen.hbs'
-          });
+          actions.push(
+            {
+              type: 'add',
+              path: 'app/{{kebabCase name}}/{{pascalCase name}}Screen.tsx',
+              templateFile: 'plop-templates/screen/screen.hbs'
+            },
+            {
+              type: 'add',
+              path: 'app/{{kebabCase name}}/index.ts',
+              templateFile: 'plop-templates/screen/index.hbs'
+            },
+            {
+              type: 'add',
+              path: 'app/{{kebabCase name}}/styles.ts',
+              templateFile: 'plop-templates/screen/styles.hbs'
+            }
+          );
           break;
           
         case 'tab-screen':
@@ -194,6 +216,11 @@ module.exports = function (plop) {
         type: 'add',
         path: 'components/molecules/{{pascalCase name}}/index.ts',
         templateFile: 'plop-templates/molecule/index.hbs'
+      },
+      {
+        type: 'add',
+        path: 'components/molecules/{{pascalCase name}}/styles.ts',
+        templateFile: 'plop-templates/molecule/styles.hbs'
       }
     ]
   });
@@ -219,6 +246,11 @@ module.exports = function (plop) {
         type: 'add',
         path: 'components/organisms/{{pascalCase name}}/index.ts',
         templateFile: 'plop-templates/organism/index.hbs'
+      },
+      {
+        type: 'add',
+        path: 'components/organisms/{{pascalCase name}}/styles.ts',
+        templateFile: 'plop-templates/organism/styles.hbs'
       }
     ]
   });
@@ -257,8 +289,18 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'app/{{kebabCase name}}.tsx',
+        path: 'app/{{kebabCase name}}/{{pascalCase name}}Screen.tsx',
         templateFile: 'plop-templates/screen/screen.hbs'
+      },
+      {
+        type: 'add',
+        path: 'app/{{kebabCase name}}/index.ts',
+        templateFile: 'plop-templates/screen/index.hbs'
+      },
+      {
+        type: 'add',
+        path: 'app/{{kebabCase name}}/styles.ts',
+        templateFile: 'plop-templates/screen/styles.hbs'
       }
     ]
   });

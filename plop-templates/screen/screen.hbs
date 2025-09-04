@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyledView } from '@/components/atoms/StyledView';
 import { StyledText } from '@/components/atoms/StyledText';
+import { styles } from './styles';
 
 export default function {{pascalCase name}}Screen() {
   const { t } = useTranslation();
@@ -17,15 +17,3 @@ export default function {{pascalCase name}}Screen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
