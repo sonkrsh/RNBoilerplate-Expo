@@ -1,35 +1,39 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { StyledText } from '@/components/atoms/StyledText';
-import { StyledView } from '@/components/atoms/StyledView';
-import MicrosoftLogo from '@/assets/images/microsoft_logo.svg';
-import { router } from 'expo-router';
-import { useAuth } from '@/contexts/AuthContext';
-const { height } = Dimensions.get('window');
+import MicrosoftLogo from "@/assets/images/microsoft_logo.svg";
+import { StyledText } from "@/components/atoms/StyledText";
+import { StyledView } from "@/components/atoms/StyledView";
+import { useMicrosoftAuth } from "@/services/auth/microsoftAuth";
+import { router } from "expo-router";
+import React from "react";
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+const { height } = Dimensions.get("window");
 
 export default function LoginScreen() {
-  const { login } = useAuth();
+  const { signInWithMicrosoft, isLoading } = useMicrosoftAuth();
 
   const handleMicrosoftLogin = async () => {
     try {
-      console.log('Microsoft login pressed');
-      
-      // TODO: Implement actual Microsoft authentication
-      // const result = await AuthRequest.promptAsync(discovery, request);
-      // const userData = await validateToken(result.params.access_token);
-      
-      // For demo purposes, simulate successful login
-      const mockUser = {
-        id: '123',
-        email: 'user@example.com',
-        name: 'John Doe',
-      };
-      
-      login(mockUser);
-      router.replace('/(tabs)');
+      console.log("Microsoft login pressed");
+
+      const result = await signInWithMicrosoft();
+
+      if (result.success) {
+        console.log("Login successful, tokens:", result.tokens);
+
+        // Create user object from tokens (you can decode JWT or call user profile API)
+
+        router.replace("/(tabs)");
+      } else {
+        console.error("Login failed:", result.error);
+      }
     } catch (error) {
-      console.error('Login failed:', error);
-      // Handle login error (show toast, etc.)
+      console.error("Login failed:", error);
     }
   };
 
@@ -37,26 +41,36 @@ export default function LoginScreen() {
     <StyledView style={styles.container}>
       <View style={styles.imageSection}>
         <Image
-          source={require('@/assets/images/login_image.png')}
+          source={require("@/assets/images/login_image.png")}
           style={styles.backgroundImage}
           resizeMode="cover"
         />
       </View>
 
       <View style={styles.formSection}>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.formContainer}>
-          <StyledText style={styles.loginTitle}>Log in to Artnet App</StyledText>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.formContainer}
+        >
+          <StyledText style={styles.loginTitle}>
+            Log in to Artnet App
+          </StyledText>
           <StyledText style={styles.loginSubtitle}>
             Lorem ipsum dolor sit amet
           </StyledText>
 
-          <TouchableOpacity style={styles.microsoftButton} onPress={handleMicrosoftLogin}>
+          <TouchableOpacity
+            style={[styles.microsoftButton, isLoading && styles.disabledButton]}
+            onPress={handleMicrosoftLogin}
+            disabled={isLoading}
+          >
             <View style={styles.microsoftIcon}>
               <MicrosoftLogo width={20} height={20} />
             </View>
-            <StyledText style={styles.microsoftButtonText}>Log in with Microsoft</StyledText>
+            <StyledText style={styles.microsoftButtonText}>
+              {isLoading ? "Signing in..." : "Log in with Microsoft"}
+            </StyledText>
           </TouchableOpacity>
-
         </ScrollView>
       </View>
     </StyledView>
@@ -66,26 +80,26 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   imageSection: {
     height: height * 0.5,
-    position: 'relative',
+    position: "relative",
   },
   backgroundImage: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
+    width: "100%",
+    height: "100%",
+    position: "absolute",
   },
   welcomeText: {
     fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 8,
   },
   subtitleText: {
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
     opacity: 0.9,
   },
   formSection: {
@@ -93,7 +107,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingHorizontal: 40,
     paddingVertical: 40,
   },
@@ -102,40 +116,43 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 600,
     marginBottom: 8,
-    textAlign: 'center',
+    textAlign: "center",
   },
   loginSubtitle: {
     color: "#171717",
     fontSize: 14,
     fontWeight: 400,
     marginBottom: 40,
-    textAlign: 'center',
+    textAlign: "center",
   },
   microsoftButton: {
-    backgroundColor: '#0050A6',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#0050A6",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
     marginBottom: 30,
   },
+  disabledButton: {
+    opacity: 0.6,
+  },
   microsoftIcon: {
     marginRight: 12,
   },
   microsoftButtonText: {
-    color: '#ffffff',
+    color: "#ffffff",
     fontSize: 16,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   footerContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   footerText: {
     fontSize: 16,
   },
   linkText: {
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });
