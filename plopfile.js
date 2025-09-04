@@ -120,23 +120,20 @@ module.exports = function (plop) {
             {
               type: 'modify',
               path: 'app/(tabs)/_layout.tsx',
-              pattern: /(      <Tabs\.Screen name="components" \/>
-)/,
-              template: '$1      <Tabs.Screen name="{{kebabCase name}}" />\n'
+              pattern: '      <Tabs.Screen name="components" />\n',
+              template: '      <Tabs.Screen name="components" />\n      <Tabs.Screen name="{{kebabCase name}}" />\n'
             },
             {
               type: 'modify',
               path: 'components/organisms/CustomTabBar/CustomTabBar.tsx',
-              pattern: /(      case 'components':
-        return <MaterialIcons name="article" size={size} color={color} \/>;)/,
-              template: '$1      case \'{{kebabCase name}}\':\n        return <MaterialIcons name="{{icon}}" size={size} color={color} />;\n'
+              pattern: "      case 'components':\n        return <MaterialIcons name=\"article\" size={size} color={color} />;",
+              template: "      case 'components':\n        return <MaterialIcons name=\"article\" size={size} color={color} />;\n      case '{{kebabCase name}}':\n        return <MaterialIcons name=\"{{icon}}\" size={size} color={color} />;"
             },
             {
               type: 'modify',
               path: 'components/organisms/CustomTabBar/CustomTabBar.tsx',
-              pattern: /(      case 'components':
-        return t\('components'\);)/,
-              template: '$1      case \'{{kebabCase name}}\':\n        return t(\'{{camelCase name}}\');\n'
+              pattern: "      case 'components':\n        return t('components');",
+              template: "      case 'components':\n        return t('components');\n      case '{{kebabCase name}}':\n        return t('{{camelCase name}}');"
             }
           );
           break;
@@ -292,25 +289,20 @@ module.exports = function (plop) {
       {
         type: 'modify',
         path: 'app/(tabs)/_layout.tsx',
-        pattern: /(      <Tabs\.Screen name="components" \/>
-)/,
-        template: '$1      <Tabs.Screen name="{{kebabCase name}}" />\n'
+        pattern: '      <Tabs.Screen name="components" />\n',
+        template: '      <Tabs.Screen name="components" />\n      <Tabs.Screen name="{{kebabCase name}}" />\n'
       },
       {
         type: 'modify',
         path: 'components/organisms/CustomTabBar/CustomTabBar.tsx',
-        pattern: /(      case 'components':
-        return <MaterialIcons name="article" size={size} color={color} \/>;
-)/,
-        template: '$1      case \'{{kebabCase name}}\':\n        return <MaterialIcons name="{{icon}}" size={size} color={color} />;\n'
+        pattern: "      case 'components':\n        return <MaterialIcons name=\"article\" size={size} color={color} />;",
+        template: "      case 'components':\n        return <MaterialIcons name=\"article\" size={size} color={color} />;\n      case '{{kebabCase name}}':\n        return <MaterialIcons name=\"{{icon}}\" size={size} color={color} />;"
       },
       {
         type: 'modify',
         path: 'components/organisms/CustomTabBar/CustomTabBar.tsx',
-        pattern: /(      case 'components':
-        return t\('components'\);
-)/,
-        template: '$1      case \'{{kebabCase name}}\':\n        return t(\'{{camelCase name}}\');\n'
+        pattern: "      case 'components':\n        return t('components');",
+        template: "      case 'components':\n        return t('components');\n      case '{{kebabCase name}}':\n        return t('{{camelCase name}}');"
       }
     ]
   });
