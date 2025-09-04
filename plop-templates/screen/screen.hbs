@@ -2,18 +2,18 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { ThemedView } from '@/components/atoms/ThemedView/ThemedView';
-import { ThemedText } from '@/components/atoms/ThemedText/ThemedText';
+import { StyledView } from '@/components/atoms/StyledView';
+import { StyledText } from '@/components/atoms/StyledText';
 
 export default function {{pascalCase name}}Screen() {
   const { t } = useTranslation();
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">{{pascalCase name}} Screen</ThemedText>
-        <ThemedText>Welcome to the {{pascalCase name}} screen!</ThemedText>
-      </ThemedView>
+      <StyledView style={styles.container}>
+        <StyledText type="title">{{pascalCase name}} Screen</StyledText>
+        <StyledText>Welcome to the {{pascalCase name}} screen!</StyledText>
+      </StyledView>
     </SafeAreaView>
   );
 }

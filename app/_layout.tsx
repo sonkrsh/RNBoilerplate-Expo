@@ -1,20 +1,17 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Provider } from 'react-redux';
-import 'react-native-reanimated';
-import '@/i18n';
+import "@/i18n";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import "react-native-reanimated";
+import { Provider } from "react-redux";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { store } from '@/store/store';
-import { ErrorBoundary } from '@/components/organisms/ErrorBoundary';
-import { ThemeProvider as CustomThemeProvider } from '@/contexts/ThemeContext';
+import { ErrorBoundary } from "@/components/organisms/ErrorBoundary";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { store } from "@/store/store";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Graphik: require("../assets/fonts/Graphik-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -24,17 +21,33 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <CustomThemeProvider>
+      <AuthProvider>
         <Provider store={store}>
-          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-            <StatusBar style="auto" />
-          </ThemeProvider>
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{
+                headerShown: false, // Hide header for auth router
+              }}
+            />
+            <Stack.Screen
+              name="login/index"
+              options={{
+                headerTitle: "ARTNET",
+                headerTitleStyle: {
+                  fontWeight: "500",
+                  fontSize: 32,
+                },
+                headerShown: true,
+                gestureEnabled: false, // Prevent swipe back from login
+              }}
+            />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="light" />
         </Provider>
-      </CustomThemeProvider>
+      </AuthProvider>
     </ErrorBoundary>
   );
 }

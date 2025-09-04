@@ -5,14 +5,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { BlurView } from 'expo-blur';
-import { useThemeColor } from '@/hooks/useThemeColor';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from '@/constants/Colors';
 
 export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
-  const backgroundColor = useThemeColor({}, 'background');
-  const borderColor = useThemeColor({}, 'border');
-  const colorScheme = useColorScheme();
+  const backgroundColor = Colors.background;
+  const borderColor = Colors.border;
   const { t } = useTranslation();
 
   const getTabIcon = (routeName: string, focused: boolean) => {
@@ -49,7 +47,7 @@ export function CustomBottomTabBar({ state, descriptors, navigation }: BottomTab
       {/* Blur overlay for space below tab bar */}
       <BlurView
         intensity={100}
-        tint={colorScheme}
+        tint="light"
         style={[
           styles.blurOverlay,
           { height: 28 + insets.bottom }
