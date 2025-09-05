@@ -26,11 +26,6 @@ export const useMicrosoftAuth = () => {
     discovery
   );
 
-  console.log(
-    "---process.env.EXPO_PUBLIC_MICROSOFT_CLIENT_ID",
-    process.env.EXPO_PUBLIC_MICROSOFT_CLIENT_ID
-  );
-
   const signInWithMicrosoft = async () => {
     console.log("Starting Microsoft auth...");
     const result = await promptAsync();
