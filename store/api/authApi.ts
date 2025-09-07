@@ -18,17 +18,15 @@ export interface UserProfile {
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     exchangeCodeForToken: builder.mutation<AuthTokens, { code: string }>({
-      query: ({ code }) => {
-        return {
-          url: "/auth/microsoft/token",
-          method: "POST",
-          data: {
-            code,
-            client_id: process.env.EXPO_PUBLIC_MICROSOFT_CLIENT_ID,
-            redirect_uri: process.env.EXPO_PUBLIC_MICROSOFT_REDIRECT_URI,
-          },
-        };
-      },
+      query: ({ code }) => ({
+        url: "/auth/microsoft/token",
+        method: "POST",
+        data: {
+          code,
+          client_id: process.env.EXPO_PUBLIC_MICROSOFT_CLIENT_ID,
+          redirect_uri: process.env.EXPO_PUBLIC_MICROSOFT_REDIRECT_URI,
+        },
+      }),
     }),
     getUserProfile: builder.query<UserProfile, void>({
       query: () => ({
