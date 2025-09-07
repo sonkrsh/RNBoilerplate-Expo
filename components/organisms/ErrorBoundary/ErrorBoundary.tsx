@@ -1,4 +1,3 @@
-import { logger } from "@/config/environment";
 import React, { Component, ReactNode } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -23,11 +22,11 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    logger.error("Error Boundary caught an error:", {
-      error: error.message,
-      stack: error.stack,
-      componentStack: errorInfo.componentStack,
-    });
+    console.error(
+      "Error Boundary caught an error:",
+      error.message,
+      errorInfo.componentStack
+    );
   }
 
   handleRetry = () => {
