@@ -1,7 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Colors } from '@/constants/Colors';
+import { styles } from './styles';
 
 export function LanguageToggle() {
   const { i18n } = useTranslation();
@@ -29,17 +30,3 @@ export function LanguageToggle() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
-    borderWidth: 1,
-    minWidth: 80,
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 14,
-    fontWeight: '500',
-  },
-});
