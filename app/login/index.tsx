@@ -5,11 +5,7 @@ import { StyledView } from "@/components/atoms/StyledView";
 import { useMicrosoftAuth } from "@/services/auth/microsoftAuth";
 import { router } from "expo-router";
 import React from "react";
-import {
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
 export default function LoginScreen() {
@@ -38,7 +34,12 @@ export default function LoginScreen() {
   return (
     <StyledView style={styles.container}>
       <View style={styles.imageSection}>
-        <LoginImage width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style={styles.backgroundImage} />
+        <LoginImage
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid slice"
+          style={styles.backgroundImage}
+        />
       </View>
 
       <View style={styles.formSection}>
@@ -70,5 +71,3 @@ export default function LoginScreen() {
     </StyledView>
   );
 }
-
-
